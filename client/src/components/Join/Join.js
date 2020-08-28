@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Fade from 'react-reveal';
+import './Join.css';
 
 const Join = () => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
 
+    const onClick = (e) => {
+        return !name || !room ? e.preventDefault() : null;
+    };
+
     return (
         <div className="join-hero">
-            <div className="joinOuterContainer">
-                <div className="joinInnerContainer">
-                    <h1 className="heading">Welcome to ChatApp</h1>
+            <div className="outer-container">
+                <div className="inner-container">
+                    <Fade bottom cascade duration={5000} distance="20px">
+                        <h1 className="heading">The ChatApp</h1>
+                    </Fade>
+
                     <div>
                         <input
+                            className="input"
                             type="text"
-                            placeholder="joinInput"
+                            placeholder="Name"
                             type="text"
                             value={name}
                             onChange={(e) => {
@@ -23,8 +33,9 @@ const Join = () => {
                     </div>
                     <div>
                         <input
+                            className="input"
                             type="text"
-                            placeholder="joinInput"
+                            placeholder="Room"
                             type="text"
                             value={room}
                             onChange={(e) => {
@@ -32,6 +43,14 @@ const Join = () => {
                             }}
                         />
                     </div>
+                    <Link
+                        onClick={onClick}
+                        to={`/chat?name=${name}&room=${room}`}
+                    >
+                        <button className="button" type="submit">
+                            Sign In
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
