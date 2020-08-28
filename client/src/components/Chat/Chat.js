@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import queryString from 'query-string';
+// import io from 'socket-io-client';
 
-const Chat = () => {
+const Chat = ({ location }) => {
+    useEffect(() => {
+        const data = queryString.parse(location.search);
+
+        console.log(data);
+        console.log(location);
+    });
     return <div>Chat</div>;
 };
 
